@@ -659,3 +659,10 @@ body::-webkit-scrollbar {
 [data-theme="dark"] #welcome-info {
   background: #212121;
 }
+
+/* 文章双行显示bug */
+/* 翻页按钮居中 */
+#pagination {
+  width: 100%;
+  margin: auto;
+}
