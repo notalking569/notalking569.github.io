@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>ceshiwenjian</title>
+      <link href="/2024/08/31/ceshiwenjian/"/>
+      <url>/2024/08/31/ceshiwenjian/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>git基本操作</title>
       <link href="/2024/08/31/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
       <url>/2024/08/31/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
@@ -20,11 +33,11 @@
       
         <tags>
             
+            <tag> git </tag>
+            
             <tag> 教程 </tag>
             
             <tag> 基本语法 </tag>
-            
-            <tag> git </tag>
             
         </tags>
       
@@ -49,11 +62,11 @@
       
         <tags>
             
-            <tag> 外挂标签 </tag>
-            
             <tag> 教程 </tag>
             
             <tag> 基本语法 </tag>
+            
+            <tag> 外挂标签 </tag>
             
         </tags>
       
