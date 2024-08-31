@@ -86,6 +86,11 @@ div#archive {
 
 /* 霓虹灯css效果 只在夜间生效 */
 /* 日间模式不生效 */
+.site-name {
+  /* 删除右上角的文字 */
+  display: none;
+  /* animation: 10s linear 0s infinite normal none running light_15px; */
+}
 [data-theme="light"] #site-name,
 [data-theme="light"] #site-title,
 [data-theme="light"] #site-subtitle,
@@ -567,4 +572,79 @@ body::-webkit-scrollbar {
 #aside-content > .card-widget.card-info > #card-info-btn {
   background-color: #3eb8be;
   border-radius: 8px;
+}
+
+/* 星光特效 */
+/* 背景宇宙星光  */
+#universe{
+  display: block;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* 这个是调置顶的优先级的，-1在文章页下面，背景上面，个人推荐这种 */
+  z-index: -1;
+}
+
+/* 顶部加载条 */
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  border-radius: 8px;
+  width: 7rem;
+  background: #eaecf2;
+  border: 1px #e3e8f7;
+  overflow: hidden
+}
+
+.pace-inactive .pace-progress {
+  opacity: 0;
+  transition: .3s ease-in
+}
+
+.pace .pace-progress {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  max-width: 200px;
+  position: absolute;
+  z-index: 2000;
+  display: block;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  width: 100%;
+  /* linear-gradient(to right, #3494e6, #ec6ead) */
+  background: linear-gradient(to right, #43cea2, #3866ca);
+  animation: gradient 2s ease infinite;
+  background-size: 200%
+}
+
+.pace.pace-inactive {
+  opacity: 0;
+  transition: .3s;
+  top: -8px
 }
