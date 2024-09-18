@@ -4,6 +4,48 @@
   
     
     <entry>
+      <title>VirtualBox虚拟机Host-Only网络代理</title>
+      <link href="/posts/3475/"/>
+      <url>/posts/3475/</url>
+      
+        <content type="html"><![CDATA[<h2 id="虚拟机基础配置"><a href="#虚拟机基础配置" class="headerlink" title="虚拟机基础配置"></a>虚拟机基础配置</h2><ul><li>sudo apt update 更新本地包索引数据 保证之后安装的依赖包是最新版本</li><li>sudo apt install openssh-server 安装OpenSSH 服务端</li><li>sudo /etc/init.d/ssh restart 开启/重启linux的ssh服务 应该也可以使用<code>sudo systemctl restart ssh</code></li><li>ssh 0 查看本机的部分信息？没啥用好像</li></ul><h2 id="更改虚拟机网络代理方式"><a href="#更改虚拟机网络代理方式" class="headerlink" title="更改虚拟机网络代理方式"></a>更改虚拟机网络代理方式</h2><ul><li>一般来说 在VirtualBox中安装的虚拟机默认的网络连接方式是<code>NAT网络地址转换</code> 我们将其更改为<code>Host-Only网络</code><div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_1.jpg" alt="修改虚拟机的网络代理方式" style="width:500px;height:300px;"/></div><span class="image-caption">修改虚拟机的网络代理方式</span></div></li></ul><h2 id="主机网络配置"><a href="#主机网络配置" class="headerlink" title="主机网络配置"></a>主机网络配置</h2><h3 id="进入网络连接页面"><a href="#进入网络连接页面" class="headerlink" title="进入网络连接页面"></a>进入网络连接页面</h3><ul><li>对于不知道如何进入控制面板的问题 可以直接在<code>下方菜单栏中的搜索中搜索控制面板 然后添加一个快捷方式在桌面上方便之后访问</code> 也可以通过<code>win+R打开命令框之后输入control进入</code> 之后的操作按图操作即可 主要是打开网络连接之后找到自己的网卡 双击进入<div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_2.jpg" alt="进入控制面板" style="width:500px;height:300px;"/></div><span class="image-caption">进入控制面板</span></div><div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_3.jpg" alt="进入网络和共享中心" style="width:500px;height:300px;"/></div><span class="image-caption">进入网络和共享中心</span></div><div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_4.jpg" alt="进入网络连接" style="width:500px;height:300px;"/></div><span class="image-caption">进入网络连接</span></div></li></ul><h3 id="开启网卡共享"><a href="#开启网卡共享" class="headerlink" title="开启网卡共享"></a>开启网卡共享</h3><ul><li>找到自己的网卡之后<code>双击进入 点击属性 或者右键点开属性都行 点击共享 勾选 这里需要选择共享对象？</code> 在上面的修改虚拟机的网络代理方式之后 这里应该会有一个VirtualBox的共享网络 就如图中的<code>以太网2 选择该网络</code>😖<div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_5.jpg" alt="开启网卡共享" style="width:500px;height:300px;"/></div><span class="image-caption">开启网卡共享</span></div></li></ul><h3 id="记录共享网络的ip地址"><a href="#记录共享网络的ip地址" class="headerlink" title="记录共享网络的ip地址"></a>记录共享网络的ip地址</h3><ul><li>双击共享网络查看详细信息 记录<code>ipv4地址和子网掩码地址</code> 然后这边就没事了🫡<div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_6.jpg" alt="记录主机共享网络ipv4地址" style="width:500px;height:300px;"/></div><span class="image-caption">记录主机共享网络ipv4地址</span></div></li></ul><h2 id="更新虚拟机ip地址"><a href="#更新虚拟机ip地址" class="headerlink" title="更新虚拟机ip地址"></a>更新虚拟机ip地址</h2><ul><li>进入虚拟机之后点击右上角的<code>三脚架标志 进入设置</code> 在这里选择<code>ipv4</code> 需要填几个地址 首先第一个是虚拟机的<code>IP地址 需要和主机的那个ipv4地址在同一个组</code> 比如主机的为192.168.2.15 那么虚拟机可以填192.168.2.xx 反正xx自己填 最好就是不要太大 <code>但是不能相同</code> 第二个就是子网掩码 直接照抄 第三个是网关 选择填主机的那个共享ipv4 下面的dns直接填<code>114.114.114.114</code>代表在中国即可 这部分就填完了 保存关闭之后重新启动ip地址配置 即最后一张照片关掉重开<div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_7.jpg" alt="进入IP设置" style="width:500px;height:300px;"/></div><span class="image-caption">进入IP设置</span></div><div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_8.jpg" alt="修改IP地址" style="width:500px;height:300px;"/></div><span class="image-caption">修改IP地址</span></div><div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_9.jpg" alt="重启更新配置" style="width:500px;height:300px;"/></div><span class="image-caption">重启更新配置</span></div></li></ul><h2 id="主机连接"><a href="#主机连接" class="headerlink" title="主机连接"></a>主机连接</h2><ul><li>打开xshell或者其他的软件新建会话 将ipv4填入其中登录 大功告成q(≧▽≦q)！！！<div class="img-wrap"><div class="img-bg"><img class="img" src="https://cdn.jsdelivr.net/gh/notalking569/picGo/img/linux_host_only_12.jpg" alt="putty成功连接" style="width:500px;height:300px;"/></div><span class="image-caption">putty成功连接</span></div></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>shell基本教程</title>
+      <link href="/posts/32251/"/>
+      <url>/posts/32251/</url>
+      
+        <content type="html"><![CDATA[<h2 id="根目录结构分析"><a href="#根目录结构分析" class="headerlink" title="根目录结构分析"></a>根目录结构分析</h2><h2 id="切换位置cd"><a href="#切换位置cd" class="headerlink" title="切换位置cd"></a>切换位置cd</h2><ul><li><code>cd /</code> 切换根目录</li><li><code>cd ~</code> 切换用户根目录</li><li><code>cd ..</code> 回到父级目录</li><li><code>cd .</code> 当前目录</li></ul><h2 id="账户相关"><a href="#账户相关" class="headerlink" title="账户相关"></a>账户相关</h2><ul><li><code>sudo bash</code> 切换管理员权限</li><li><code>sudo passwd root</code> 第一次创建管理员账号密码</li><li><code>su root</code> 切换管理员账号</li><li><code>sudo useradd user_name</code>  </li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vim简单教程</title>
       <link href="/posts/58890/"/>
       <url>/posts/58890/</url>
